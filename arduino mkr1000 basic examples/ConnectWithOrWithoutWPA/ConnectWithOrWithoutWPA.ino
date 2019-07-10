@@ -18,7 +18,7 @@ unsigned long maxWaitForSerial = 2000; //in ms
 
 void setup() {
   //Initialize serial and wait for port to open:
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   // wait for serial port to connect, up to maximum maxWaitForSerial
   // Needed for native USB port only
