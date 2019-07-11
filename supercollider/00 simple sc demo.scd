@@ -115,4 +115,7 @@ Routine.run({
 })
 )
 
-
+//-----
+//for testing, synthdefs can be created for you on the fly
+~noise = {PinkNoise.ar(-12.dbamp)}.play(outbus: 0);
+~noise.free;

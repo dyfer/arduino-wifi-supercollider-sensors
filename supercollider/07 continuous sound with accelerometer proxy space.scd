@@ -57,6 +57,7 @@ s.waitForBoot({
 }
 )
 
+//play
 ~proxy[\out].play;
 
 // we can change things on the fly
@@ -91,6 +92,9 @@ s.waitForBoot({
 
 //play
 ~proxy[\out].play;
+
+//fade out (???)
+~proxy.release(2);
 
 //clear everything
 ~proxy.clear;
