@@ -2,6 +2,8 @@
 
 // for mkr1000
 
+//connect something to analog input 0
+
 #include <WiFi101.h>
 
 #include <WiFiUdp.h>

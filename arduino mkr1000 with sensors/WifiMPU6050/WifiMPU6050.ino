@@ -1,20 +1,20 @@
 /*
 
-for mkr1000
-and  GY-521 (MPU 6050 accelerometer and gyroscope)
+  for mkr1000
+  and  GY-521 (MPU 6050 accelerometer and gyroscope)
 
-connections:
+  connections:
 
-mkr1000 |   Gy-521
+  mkr1000 |   Gy-521
   VCC       VCC
   GND       GND
   11        SDA
   12        SCL
 
-by Marcin Pączkowski
+  by Marcin Pączkowski
 
-conn
- */
+  NOTE: this is sending data as fast as possible! this might not be always needed
+*/
 #include <SPI.h>
 #include <WiFi101.h> //note the library for mkr1000
 #include <WiFiUdp.h>
@@ -39,7 +39,7 @@ WiFiUDP UdpSend; //for sending
 //IPAddress myIP;
 
 // destination IP and port
-IPAddress destIP(10, 45, 0, 111);
+IPAddress destIP(10, 45, 0, 149);
 const unsigned int destPort = 57120;
 
 OSCErrorCode error;
@@ -59,6 +59,8 @@ int16_t gx, gy, gz;
 #define OUTPUT_READABLE_ACCELGYRO
 
 unsigned long maxWaitForSerial = 2000; //in ms
+
+float valueScaler = 2048; //we divide raw accelerometer values to obtain values in G-force (force of gravity)
 
 
 void setup() {
@@ -99,13 +101,13 @@ void setup() {
 
 void loop() {
   // check if we're connected
-  if(WiFi.status() != WL_CONNECTED) {
+  if (WiFi.status() != WL_CONNECTED) {
     // connect
     connectToWiFi();
   } else {
     // if connected, check the signal strength once every 10 seconds:
-//    delay(10000);
-//    printSignalStrength();
+    //    delay(10000);
+    //    printSignalStrength();
     // send accelerometer data
     sendAcc();
   }
@@ -116,18 +118,18 @@ void sendAcc() {
   accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
   OSCMessage msgAcc("/acc");
-    msgAcc.add(ax);
-    msgAcc.add(ay);
-    msgAcc.add(az);
+//  msgAcc.add(ax);
+//  msgAcc.add(ay);
+//  msgAcc.add(az);
   //scaled:
-//  msgAcc.add(ax / valueScaler);
-//  msgAcc.add(ay / valueScaler);
-//  msgAcc.add(az / valueScaler);
+  msgAcc.add(ax / valueScaler);
+  msgAcc.add(ay / valueScaler);
+  msgAcc.add(az / valueScaler);
   UdpSend.beginPacket(destIP, destPort);
   msgAcc.send(UdpSend);
   UdpSend.endPacket();
   msgAcc.empty();
-//    Serial.println(az);
+  //    Serial.println(az);
 }
 
 void connectToWiFi() {
@@ -136,16 +138,16 @@ void connectToWiFi() {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // check for size of the password - empty string will give size 1
-    if(sizeof(pass)>1) {
+    if (sizeof(pass) > 1) {
       // Connect to WPA/WPA2 network:
       status = WiFi.begin(ssid, pass);
     } else {
       status = WiFi.begin(ssid);
     }
-    
+
 
     // wait 10s before attempting to reconnect:
-    if(status != WL_CONNECTED) {
+    if (status != WL_CONNECTED) {
       delay(10000);
     }
   }
@@ -217,7 +219,7 @@ void printCurrentNet() {
 }
 
 void printSignalStrength() {
-    // print the received signal strength:
+  // print the received signal strength:
   long rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.println(rssi);

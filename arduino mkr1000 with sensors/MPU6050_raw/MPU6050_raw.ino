@@ -29,6 +29,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ===============================================
+
+connections:
+
+mkr1000 |   Gy-521
+  VCC       VCC
+  GND       GND
+  11        SDA
+  12        SCL
 */
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
