@@ -20,7 +20,12 @@ s.waitForBoot({
 }, '/acc')
 )
 
+
+//when done
 ~receiver.free;
+~accBus.free;
+
+
 
 // you can get the data from the bus
 ~accBus.getnSynchronous;

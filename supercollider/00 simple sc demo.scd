@@ -1,5 +1,6 @@
 // shift-enter executes single line
 // cmd/ctrl-enter executes code block
+// cmd/ctrl-. (period) stops sound and message receiving
 
 // before we start: install sc3plugins
 // 1. open extensions folder
