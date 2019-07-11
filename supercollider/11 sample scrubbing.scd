@@ -62,7 +62,7 @@ FileDialog({|path|
 ~proxy[\out] = {
 	var snd;
 	var buf = ~buffer;
-	snd = Warp1.ar(1, ~buffer, ~proxy[\playheadPosition].kr(1).poll, ~proxy[\rate].kr, 0.8, -1, 8, 0.01, 4);
+	snd = Warp1.ar(1, ~buffer, ~proxy[\playheadPosition].kr(1), ~proxy[\rate].kr, 0.8, -1, 8, 0.01, 4);
 	Pan2.ar(snd, ~proxy[\pan]);
 }
 )
