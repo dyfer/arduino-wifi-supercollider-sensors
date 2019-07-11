@@ -52,10 +52,7 @@ FileDialog({|path|
 
 // set up
 
-~proxy.ar(\playheadPosition, 1); //define audio-rate proxy
-
-~proxy[\playheadPosition] = 0;
-
+~proxy[\baseRate] = 1;
 
 ~proxy[\pan] = 0;
 
@@ -63,6 +60,7 @@ FileDialog({|path|
 ~proxy[\out] = {
 	var snd;
 	var buf = ~buffer;
+	snd = BufGrain.ar(
 	snd = BufRd.ar(1, buf, ~proxy[\playheadPosition] * BufFrames.kr(buf));
 	Pan2.ar(snd, ~proxy[\pan]);
 }
