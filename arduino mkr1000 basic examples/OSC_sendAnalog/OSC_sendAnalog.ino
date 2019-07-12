@@ -26,19 +26,16 @@ const unsigned int receivePort = 8000;
 
 int ledPin = 6;
 
-unsigned long maxWaitForSerial = 2000; //in ms
-
 void setup()
 {
   Serial.begin(9600);      // initialize serial communication
   pinMode(ledPin, OUTPUT);      // set the LED pin mode
 
-  // wait for serial port to connect, up to maximum maxWaitForSerial
+  // wait for serial port to connect
   // Needed for native USB port only
+  // this means that the sketch won't start without USB connected and Serial Monitor started
   while (!Serial) {
-    if (millis() > maxWaitForSerial) {
-      break;
-    }
+    ;
   }
 
   // check for the presence of the shield:
