@@ -1,3 +1,9 @@
+// ----------------------------------------
+// THIS EXAMPLE IS NOT FINISHED
+// ----------------------
+
+/*
+
 //------------------
 //---triggering--
 
@@ -56,11 +62,19 @@ FileDialog({|path|
 
 ~proxy[\pan] = 0;
 
+~proxy[\triggerRate] = 10;
+~proxy[\overlaps] = 2;
+
+
 (
 ~proxy[\out] = {
 	var snd;
 	var buf = ~buffer;
-	snd = BufGrain.ar(
+	var triggerRate = ~proxy[\triggerRate];
+	var trig = Impulse.ar(triggerRate);
+	var overlaps = ~proxy[\overlaps];
+	var grainDur = triggerRate.min(0.001).reciprocal * overlaps;
+	snd = BufGrain.ar(trig, grainDur, ~buffer, rate,
 	snd = BufRd.ar(1, buf, ~proxy[\playheadPosition] * BufFrames.kr(buf));
 	Pan2.ar(snd, ~proxy[\pan]);
 }

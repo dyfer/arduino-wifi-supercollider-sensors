@@ -1,11 +1,11 @@
 /*
-This is based on built-in example for connecting to a
-secured network: ConnectWithWPA
+  This is based on built-in example for connecting to a
+  secured network: ConnectWithWPA
 
-modified for mkr1000
+  modified for mkr1000
 
-by Marcin Pączkowski
- */
+  by Marcin Pączkowski
+*/
 #include <SPI.h>
 #include <WiFi101.h> //note the library for mkr1000
 
@@ -13,19 +13,15 @@ char ssid[] = "bodysound";     //  your network SSID (name)
 char pass[] = "interface";  // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 
-unsigned long maxWaitForSerial = 2000; //in ms
-
-
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
 
-  // wait for serial port to connect, up to maximum maxWaitForSerial
+  // wait for serial port to connect
   // Needed for native USB port only
+  // this means that the sketch won't start without USB connected and Serial Monitor started
   while (!Serial) {
-    if (millis() > maxWaitForSerial) {
-      break;
-    }
+    ;
   }
 
   // confirm we're starting
@@ -41,7 +37,7 @@ void setup() {
 
 void loop() {
   // check if we're connected
-  if(WiFi.status() != WL_CONNECTED) {
+  if (WiFi.status() != WL_CONNECTED) {
     // connect
     connectToWiFi();
   } else {
@@ -57,9 +53,9 @@ void connectToWiFi() {
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
-    
+
     // Connect to open or WPA/WPA2 network:
-    if(sizeof(pass)>1) {  
+    if (sizeof(pass) > 1) {
       // Connect to WPA/WPA2 network:
       status = WiFi.begin(ssid, pass);
     } else {
@@ -68,7 +64,7 @@ void connectToWiFi() {
     }
 
     // wait 10s before attempting to reconnect:
-    if(status != WL_CONNECTED) {
+    if (status != WL_CONNECTED) {
       delay(10000);
     }
   }
@@ -132,7 +128,7 @@ void printCurrentNet() {
 }
 
 void printSignalStrength() {
-    // print the received signal strength:
+  // print the received signal strength:
   long rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.println(rssi);

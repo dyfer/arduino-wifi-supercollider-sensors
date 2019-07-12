@@ -32,22 +32,22 @@ int keyIndex = 0;                 // your network key Index number (needed only 
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
-unsigned long maxWaitForSerial = 2000; //in ms
-
 int ledPin = 6; //mkr1000's led is on pin 6
 
 void setup() {
   Serial.begin(9600);      // initialize serial communication
   pinMode(ledPin, OUTPUT);      // set the LED pin mode
 
-  // wait for serial port to connect, up to maximum maxWaitForSerial
+  // wait for serial port to connect
   // Needed for native USB port only
+  // this means that the sketch won't start without USB connected and Serial Monitor started
   while (!Serial) {
-    if (millis() > maxWaitForSerial) {
-      break;
-    }
+    ;
   }
 
+  // confirm we're starting
+  Serial.println("Hello!");
+  
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");

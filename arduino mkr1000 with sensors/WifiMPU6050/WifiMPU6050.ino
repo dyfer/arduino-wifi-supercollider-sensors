@@ -60,19 +60,16 @@ int16_t gx, gy, gz;
 
 unsigned long maxWaitForSerial = 2000; //in ms
 
-float valueScaler = 2048; //we divide raw accelerometer values to obtain values in G-force (force of gravity)
-
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
 
-  // wait for serial port to connect, up to maximum maxWaitForSerial
+  // wait for serial port to connect
   // Needed for native USB port only
+  // this means that the sketch won't start without USB connected and Serial Monitor started
   while (!Serial) {
-    if (millis() > maxWaitForSerial) {
-      break;
-    }
+    ;
   }
 
   delay(5000);
