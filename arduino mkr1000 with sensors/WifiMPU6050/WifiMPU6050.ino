@@ -58,7 +58,7 @@ int16_t gx, gy, gz;
 // not so easy to parse, and slow(er) over UART.
 #define OUTPUT_READABLE_ACCELGYRO
 
-unsigned long maxWaitForSerial = 2000; //in ms
+float valueScaler = 2048; //we divide raw accelerometer values to obtain values in G-force (force of gravity)
 
 
 void setup() {
@@ -71,8 +71,6 @@ void setup() {
   while (!Serial) {
     ;
   }
-
-  delay(5000);
 
   // confirm we're starting
   Serial.println("Hello!");
