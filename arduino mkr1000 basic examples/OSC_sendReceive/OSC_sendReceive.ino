@@ -39,6 +39,8 @@ void setup()
     }
   }
 
+  delay(5000);
+
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");

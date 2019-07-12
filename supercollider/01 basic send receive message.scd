@@ -9,9 +9,12 @@ NetAddr.langPort; //check language port
 ~sending = fork{
 	var value = true;
 	loop{
-		NetAddr("10.45.0.120", 8000).sendMsg("/led", value.asInteger);
+		10.do({
+			NetAddr("10.45.0.120", 8000).sendMsg("/led", value.asInteger);
+			"sending".postln;
+			0.1.wait;
+		});
 		value = value.not;
-		0.5.wait;
 	}
 }
 )

@@ -33,7 +33,7 @@ s.waitForBoot({
 
 // create a simple synthesis definition
 (
-a = SynthDef(\simple, {arg out = 0, freq = 440, amp = 0.5, pan = 0, dur = 1;
+SynthDef(\simple, {arg out = 0, freq = 440, amp = 0.5, pan = 0, dur = 1;
 	var snd, env;
 	snd = SinOsc.ar(freq, 0, amp);
 	env = EnvGen.kr(Env.perc(releaseTime: dur), doneAction: 2);

@@ -74,6 +74,7 @@ void loop()
 {
   receiveOSC(); //receive in the main loop
   sendOSC();
+  delay(10);
 }
 
 void sendOSC() {
@@ -82,6 +83,7 @@ void sendOSC() {
 
   //OSCBundle's add' returns the OSCMessage so the message's 'add' can be composed together
   bndl.add("/analog/0").add((int32_t)analogRead(0));
+  bndl.add("/analog/1").add((int32_t)analogRead(1));
   //    bndl.add("/analog/1").add((int32_t)analogRead(1));
   //    bndl.add("/digital/5").add((digitalRead(5)==HIGH)?"HIGH":"LOW");
 

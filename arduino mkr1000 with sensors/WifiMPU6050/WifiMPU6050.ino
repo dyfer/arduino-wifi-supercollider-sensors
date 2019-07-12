@@ -75,6 +75,8 @@ void setup() {
     }
   }
 
+  delay(5000);
+
   // confirm we're starting
   Serial.println("Hello!");
 
@@ -110,6 +112,7 @@ void loop() {
     //    printSignalStrength();
     // send accelerometer data
     sendAcc();
+    delay(10);
   }
 }
 
