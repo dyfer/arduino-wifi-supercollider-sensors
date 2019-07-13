@@ -9,7 +9,6 @@ OSCFunc.trace(false);
 (
 s.waitForBoot({
 	~accBus = Bus.control(s, 3);
-	~proxy = ProxySpace(s);
 })
 )
 
@@ -123,5 +122,11 @@ Synth(\bufPlayDur, [\buffer, ~buffer, \dur, 0.3, \att, 0.01, \rel, 0.1, \startPo
 
 }, '/acc')
 )
+
+
+
+//when done
+~receiver.free;
+~accBus.free;
 
 

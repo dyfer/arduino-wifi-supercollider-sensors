@@ -24,11 +24,6 @@ s.waitForBoot({
 )
 
 
-//when done
-~receiver.free;
-~accBus.free;
-
-
 //define synthdef, based on a \default synth
 (
 SynthDef(\saw1, { arg out=0, freq=440, amp=0.1, pan = 0, gate=1, relTime = 0.5;
@@ -116,3 +111,8 @@ SynthDef(\saw1, { arg out=0, freq=440, amp=0.1, pan = 0, gate=1, relTime = 0.5;
 
 ~proxy.clear(2);
 
+
+
+//when done
+~receiver.free;
+~accBus.free;

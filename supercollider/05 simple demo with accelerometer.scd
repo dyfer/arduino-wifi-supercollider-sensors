@@ -21,12 +21,6 @@ s.waitForBoot({
 )
 
 
-//when done
-~receiver.free;
-~accBus.free;
-
-
-
 // you can get the data from the bus
 ~accBus.getnSynchronous;
 ~accBus.getnSynchronous[0]; //just the X axis
@@ -70,3 +64,7 @@ Synth(\simple);
 )
 ~sounds.stop;
 
+
+//when done
+~receiver.free;
+~accBus.free;

@@ -1,7 +1,7 @@
 NetAddr("10.45.0.120", 8000).sendMsg("/led", 1); //replace IP address with the one of the Arduino WiFi (in Serial Monitor)
-NetAddr("10.45.0.120", 8000).sendMsg("/led", 0);
+NetAddr("10.45.0.120", 8000).sendMsg("/led", 0); //replace IP address with the one of the Arduino WiFi (in Serial Monitor)
 
-NetAddr.langPort; //check language port
+NetAddr.langPort; //check language port, should be 57120 (matching sending port in Arduino)
 
 
 (
@@ -10,7 +10,7 @@ NetAddr.langPort; //check language port
 	var value = true;
 	loop{
 		10.do({
-			NetAddr("10.45.0.120", 8000).sendMsg("/led", value.asInteger);
+			NetAddr("10.45.0.120", 8000).sendMsg("/led", value.asInteger); //replace IP address with the one of the Arduino WiFi (in Serial Monitor)
 			"sending".postln;
 			0.1.wait;
 		});

@@ -1,7 +1,4 @@
-NetAddr("10.45.0.120", 8000).sendMsg("/led", 1);
-NetAddr("10.45.0.120", 8000).sendMsg("/led", 0);
-
-NetAddr.langPort; //check language port
+NetAddr.langPort; //check language port, should be 57120 (matching sending port in Arduino)
 
 OSCFunc.trace(true);//check all incoming messages
 OSCFunc.trace(false);

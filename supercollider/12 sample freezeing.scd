@@ -1,5 +1,3 @@
-//------------------
-//---triggering--
 
 OSCFunc.trace(true);
 OSCFunc.trace(false);
@@ -22,6 +20,8 @@ s.waitForBoot({
 }, '/acc')
 )
 
+
+// proxy - get signal from accelerometers
 ~proxy[\acc] = {In.kr(~accBus.index, ~accBus.numChannels)};
 
 ~proxy[\acc].scope;

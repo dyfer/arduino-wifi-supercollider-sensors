@@ -20,10 +20,6 @@ s.waitForBoot({
 }, '/acc')
 )
 
-//when done
-~receiver.free;
-~accBus.free;
-
 
 // you can get the data from the bus
 ~accBus.getnSynchronous;
@@ -86,3 +82,7 @@ a = SynthDef(\sineBusFreqControl, {arg out = 0, freqBus = 0, freqMin = 440, freq
 
 ~sound.release; //gently release
 
+//------
+//when done
+~receiver.free;
+~accBus.free;

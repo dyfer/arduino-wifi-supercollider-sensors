@@ -21,21 +21,19 @@ s.waitForBoot({
 }, '/acc')
 )
 
-//when done
-~receiver.free;
-~accBus.free;
-
-
 // you can get the data from the bus
 ~accBus.getnSynchronous;
 ~accBus.getnSynchronous[0]; //just the X axis
 
+
+// proxy setup - accelerometers
 
 ~proxy[\acc] = {In.kr(~accBus.index, ~accBus.numChannels)};
 
 ~proxy[\acc].scope;
 
 
+// proxy setup - parameters
 (
 ~proxy[\minFreq] = 100;
 ~proxy[\maxFreq] = 1000;
@@ -44,6 +42,7 @@ s.waitForBoot({
 ~proxy[\pan] = 0;
 )
 
+// proxy setup - sound generation
 (
 ~proxy[\out] = {
 	var snd, env, freq, amp;
@@ -57,7 +56,7 @@ s.waitForBoot({
 }
 )
 
-//play
+//play!
 ~proxy[\out].play;
 
 // we can change things on the fly
@@ -65,7 +64,7 @@ s.waitForBoot({
 ~proxy[\maxFreq] = 4000;
 
 //try again
-~proxy.fadeTime_(1);
+~proxy.fadeTime_(1); //changes crossfade time between parameters
 ~proxy[\maxFreq] = 2000;
 
 
@@ -98,3 +97,9 @@ s.waitForBoot({
 
 //clear everything
 ~proxy.clear;
+
+
+//when done
+~receiver.free;
+~accBus.free;
+

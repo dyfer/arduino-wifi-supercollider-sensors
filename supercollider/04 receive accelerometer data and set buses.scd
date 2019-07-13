@@ -1,4 +1,4 @@
-NetAddr.langPort; //check language port
+NetAddr.langPort; //check language port, should be 57120 (matching sending port in Arduino)
 
 OSCFunc.trace(true);//check all incoming messages
 OSCFunc.trace(false);

@@ -22,6 +22,8 @@ s.waitForBoot({
 }, '/acc')
 )
 
+
+// proxy - get signal from accelerometers
 ~proxy[\acc] = {In.kr(~accBus.index, ~accBus.numChannels)};
 
 ~proxy[\acc].scope;
@@ -50,7 +52,7 @@ FileDialog({|path|
 ~accBus.scope;
 
 
-// set up
+// set up playhead
 
 ~proxy.ar(\playheadPosition, 1); //define audio-rate proxy
 
