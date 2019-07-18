@@ -12,10 +12,8 @@
   12        SCL
 
   by Marcin Pączkowski
-
-  NOTE: this is sending data as fast as possible! this might not be always needed
 */
-#include <SPI.h>
+//#include <SPI.h>
 #include <WiFi101.h> //note the library for mkr1000
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
@@ -29,8 +27,8 @@
 #include "MPU6050.h"
 
 
-char ssid[] = "bodysound";     //  your network SSID (name)
-char pass[] = "interface";  // your network password
+char ssid[] = "University of Washington";     //  your network SSID (name)
+char pass[] = "";  // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 
 // UDP setup
@@ -39,8 +37,8 @@ WiFiUDP UdpSend; //for sending
 //IPAddress myIP;
 
 // destination IP and port
-IPAddress destIP(10, 45, 0, 149);
-const unsigned int destPort = 57120;
+IPAddress destIP(10, 1, 1, 120); // your computer's address here
+const unsigned int destPort = 57120; // your computer program's receiving port (57120 is SuperCollider's default receiving port)
 
 OSCErrorCode error;
 
